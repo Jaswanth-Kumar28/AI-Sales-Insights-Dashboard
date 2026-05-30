@@ -9,9 +9,9 @@ class Dashboard extends React.Component {
                 <h1>Sales Insights Dashboard</h1>
                 <InsightsPanel />
                 <div className="summary-cards">
-                    <SummaryCard title="Top Products" />
-                    <SummaryCard title="Declining Products" />
-                    <SummaryCard title="Weak Areas" />
+                    <SummaryCard title="Top Products" value="-" description="Upload sales data to identify leaders." />
+                    <SummaryCard title="Declining Products" value="-" description="Upload dated sales data to find drops." />
+                    <SummaryCard title="Weak Areas" value="-" description="Upload sales data to locate weaker regions." />
                 </div>
             </div>
         );

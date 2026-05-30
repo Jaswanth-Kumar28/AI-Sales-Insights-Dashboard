@@ -89,10 +89,14 @@ const currency = (value: number) =>
 const percent = (value: number) => `${value.toFixed(1)}%`;
 
 const buildProductMetrics = (records: SalesRecord[], totalRevenue: number): ProductInsight[] => {
-    const sortedDates = records
-        .map((record) => record.date?.getTime())
-        .filter((value): value is number => value !== undefined)
-        .sort((a, b) => a - b);
+    const sortedDates = records.reduce<number[]>((dates, record) => {
+        if (record.date) {
+            dates.push(record.date.getTime());
+        }
+
+        return dates;
+    }, []);
+    sortedDates.sort((a, b) => a - b);
     const midpoint = sortedDates.length > 1 ? sortedDates[Math.floor(sortedDates.length / 2)] : null;
 
     const byProduct = records.reduce<Record<string, ProductInsight>>((acc, record) => {
